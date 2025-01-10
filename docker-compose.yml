@@ -480,5 +480,14 @@ services:
     volumes:
       - ./volumes/pooler/pooler.exs:/etc/pooler/pooler.exs:ro
 
+  # Custom Section Begin
+  # Local mail server
+  mail:
+    container_name: supabase-mail
+    image: inbucket/inbucket:3.0.3
+    ports:
+      - ${LOCAL_SMTP_PORT}:9000 # web interface
+  # Custom Section End
+
 volumes:
   db-config:
