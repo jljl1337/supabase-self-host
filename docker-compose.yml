@@ -56,7 +56,10 @@ services:
     entrypoint: bash -c 'eval "echo \"$$(cat ~/temp.yml)\"" > ~/kong.yml && /docker-entrypoint.sh kong docker-start'
     ports:
       - ${KONG_HTTP_PORT}:8000/tcp
-      - ${KONG_HTTPS_PORT}:8443/tcp
+      # Custom Section Begin
+      # Remove HTTPS port
+      # - ${KONG_HTTPS_PORT}:8443/tcp
+      # Custom Section End
     depends_on:
       analytics:
         condition: service_healthy
