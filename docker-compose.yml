@@ -485,6 +485,7 @@ services:
   mail:
     container_name: supabase-mail
     image: inbucket/inbucket:3.0.3
+    restart: unless-stopped
     ports:
       - ${LOCAL_SMTP_PORT}:9000 # web interface
   # Custom Section End
