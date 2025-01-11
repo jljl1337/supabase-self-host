@@ -508,6 +508,7 @@ services:
       - POSTGRES_PORT=${POSTGRES_PORT}
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - TZ=${BACKUP_TZ}
       - SCHEDULE=0 45 * * * *
       - BACKUP_ON_START=TRUE
       - BACKUP_KEEP_DAYS=7
