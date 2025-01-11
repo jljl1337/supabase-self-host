@@ -491,6 +491,28 @@ services:
     restart: unless-stopped
     ports:
       - ${LOCAL_SMTP_PORT}:9000 # web interface
+
+  # Database backup
+  backup:
+    container_name: supabase-backup
+    image: prodrigestivill/postgres-backup-local
+    restart: unless-stopped
+    user: postgres:postgres
+    volumes:
+      - ${BACKUP_VOLUME}:/backups
+    depends_on:
+      - db
+    environment:
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - SCHEDULE=0 45 * * * *
+      - BACKUP_ON_START=TRUE
+      - BACKUP_KEEP_DAYS=7
+      - BACKUP_KEEP_WEEKS=4
+      - BACKUP_KEEP_MONTHS=12
   # Custom Section End
 
 volumes:
