@@ -491,6 +491,8 @@ services:
     restart: unless-stopped
     ports:
       - ${LOCAL_SMTP_PORT}:9000 # web interface
+    volumes:
+      - mail-storage:/storage
 
   # Database backup
   backup:
@@ -518,3 +520,4 @@ services:
 
 volumes:
   db-config:
+  mail-storage:
