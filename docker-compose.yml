@@ -520,4 +520,6 @@ services:
 
 volumes:
   db-config:
+  # Custom Section Begin
   mail-storage:
+  # Custom Section End
