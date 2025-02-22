@@ -10,5 +10,5 @@ Assuming you have the `supabase` folder in the parent directory, you can update
 the image by running the following commands:
 
 ```bash
-cp -r ../supabase/docker/. .
+cp -r ../supabase/docker/. ./docker
 ```

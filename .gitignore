@@ -1,9 +1,5 @@
-volumes/db/data
-volumes/storage
-.env
-test.http
-docker-compose.override.yml
+# Environment variables
+*.env
 
-# Custom Section Begin
-backup
-# Custom Section End
+# Temporary files
+*tmp*

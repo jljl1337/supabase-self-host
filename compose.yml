@@ -1,0 +1,9 @@
+include:
+
+  - path:
+    - docker/docker-compose.yml
+    - override.yml
+
+    env_file:
+      - docker/.env.example
+      - .env

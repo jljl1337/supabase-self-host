@@ -55,10 +55,7 @@ services:
     restart: unless-stopped
     ports:
       - ${KONG_HTTP_PORT}:8000/tcp
-      # Custom Section Begin
-      # Remove HTTPS port
-      # - ${KONG_HTTPS_PORT}:8443/tcp
-      # Custom Section End
+      - ${KONG_HTTPS_PORT}:8443/tcp
     volumes:
       # https://github.com/supabase/supabase/issues/12661
       - ./volumes/api/kong.yml:/home/kong/temp.yml:ro
@@ -525,43 +522,5 @@ services:
         "/app/bin/migrate && /app/bin/supavisor eval \"$$(cat /etc/pooler/pooler.exs)\" && /app/bin/server"
       ]
 
-  # Custom Section Begin
-  # Local mail server
-  mail:
-    container_name: supabase-mail
-    image: inbucket/inbucket:3.0.3
-    restart: unless-stopped
-    ports:
-      - ${LOCAL_SMTP_PORT}:9000 # web interface
-    volumes:
-      - mail-storage:/storage
-
-  # Database backup
-  backup:
-    container_name: supabase-backup
-    image: prodrigestivill/postgres-backup-local
-    restart: unless-stopped
-    user: postgres:postgres
-    volumes:
-      - ${BACKUP_VOLUME}:/backups
-    depends_on:
-      - db
-    environment:
-      - POSTGRES_HOST=${POSTGRES_HOST}
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_PORT=${POSTGRES_PORT}
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - TZ=${BACKUP_TZ}
-      - SCHEDULE=0 45 * * * *
-      - BACKUP_ON_START=TRUE
-      - BACKUP_KEEP_DAYS=7
-      - BACKUP_KEEP_WEEKS=4
-      - BACKUP_KEEP_MONTHS=12
-  # Custom Section End
-
 volumes:
   db-config:
-  # Custom Section Begin
-  mail-storage:
-  # Custom Section End
