@@ -24,18 +24,18 @@ services:
     depends_on:
       - db
     environment:
-      - POSTGRES_HOST=${POSTGRES_HOST}
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_PORT=${POSTGRES_PORT}
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - TZ=${BACKUP_TZ}
-      - SCHEDULE=0 45 * * * *
-      - BACKUP_ON_START=TRUE
-      - BACKUP_KEEP_MINS=1440
-      - BACKUP_KEEP_DAYS=7
-      - BACKUP_KEEP_WEEKS=4
-      - BACKUP_KEEP_MONTHS=12
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      TZ: ${BACKUP_TZ}
+      SCHEDULE: 0 45 * * * *
+      BACKUP_ON_START: "TRUE"
+      BACKUP_KEEP_MINS: 1440
+      BACKUP_KEEP_DAYS: 7
+      BACKUP_KEEP_WEEKS: 4
+      BACKUP_KEEP_MONTHS: 12
 
 volumes:
   mail-storage:
