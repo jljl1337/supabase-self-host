@@ -7,14 +7,23 @@ started.
 ## Usage
 
 1. Copy `.env.example` to `.env` and update the values as needed.
-2. Run `docker-compose up -d` to start the services.
-3. Run `docker-compose down` to stop the services.
+2. Run `docker compose up -d` to start the services.
+3. Run `docker compose down` to stop the services.
 
 ## Updating
 
 Assuming you have cloned the `supabase` repository in the parent directory, you
-can update the image by running the following commands:
+can update the image by running the following commands after stopping the
+services:
 
 ```bash
 cp -r ../supabase/docker/. ./docker
+```
+
+Then start the services again.
+
+The following command can be used to free up space after updating:
+
+```bash
+docker system prune -f
 ```
