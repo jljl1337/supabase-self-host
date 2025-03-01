@@ -1,9 +1,11 @@
 services:
 
+  # Remove HTTPS port
   kong:
     ports: !override
       - ${KONG_HTTP_PORT}:8000/tcp
 
+  # Local SMTP server
   mail:
     container_name: supabase-mail
     image: inbucket/inbucket:3.0.3
