@@ -25,5 +25,5 @@ Then start the services again.
 The following command can be used to free up space after updating:
 
 ```bash
-docker system prune -f
+docker system prune -a
 ```
