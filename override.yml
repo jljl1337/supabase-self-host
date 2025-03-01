@@ -24,7 +24,8 @@ services:
     volumes:
       - ${BACKUP_VOLUME}:/backups
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       POSTGRES_HOST: ${POSTGRES_HOST}
       POSTGRES_DB: ${POSTGRES_DB}
